@@ -139,14 +139,15 @@ fill_single(
 )
 
 # 5. Decision
-fill_single(tables[7], "☐  Keep the design as it is      ☒  Change the design      ☐  Switch to Plan B (from D6)")
+fill_single(tables[7], "☒  Keep the design as it is      ☐  Change the design      ☐  Switch to Plan B (from D6)")
 
 fill_single(
     tables[8],
-    "Architecture and budget. Keep the overall architecture, edge devices and local-training "
-    "workflow. I recommend weighting updates by reputation instead of only recording or "
-    "flagging behavior. This is a focused server-side change, not a redesign. No requirements "
-    "or budget change is indicated.\n"
+    "Architecture and budget. Keep the planned reputation-tracking design, including the "
+    "overall architecture, edge devices and local-training workflow. The additional test "
+    "suggests weighting updates by reputation, but this is an implementation recommendation "
+    "to validate with the real detector and deepfake data, not an architecture change. "
+    "No requirements or budget change is indicated.\n"
     "D4 coverage. The run demonstrates FR-16 reputation tracking and exercises anomaly checks "
     "related to FR-12/FR-13. Node blocking, real device speed and networking were not tested. "
     "I would not lower the security-risk rating. The separate D4 choice between Krum and "
