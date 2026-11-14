@@ -5,8 +5,7 @@ IT 444 Capstone (Team 2, LEE2-B): Dylan Cohen's individual technical spike.
 **D4 question:** Can the federated learning server accurately track and update the reputation of individual edge nodes across multiple training rounds to identify potentially malicious model updates?
 
 Repository: [IT444-node-reputation-spike](https://github.com/Cohends/IT444-node-reputation-spike).
-The final submission is [Cohen_Dylan_Spike.pdf](Cohen_Dylan_Spike.pdf);
-[Cohen_Dylan_Spike.docx](Cohen_Dylan_Spike.docx) is the editable copy.
+The final submission is [Cohen_Dylan_Spike.pdf](results/Cohen_Dylan_Spike.pdf).
 
 ## What this is
 
@@ -72,45 +71,45 @@ PowerShell, from a new clone:
 ```powershell
 git clone https://github.com/Cohends/IT444-node-reputation-spike.git
 Set-Location IT444-node-reputation-spike
+Set-Location code
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe spike.py
 .\.venv\Scripts\python.exe plot.py
 ```
 
-On Linux or macOS, use a virtual environment, install `requirements.txt`,
-then run `python spike.py` and `python plot.py`. New runs write to `out/`
+On Linux or macOS, enter `code/`, use a virtual environment, install
+`requirements.txt`, then run `python spike.py` and `python plot.py`.
+New runs write to `code/out/`
 which is generated locally and ignored by Git; the preserved laptop evidence
-is under `evidence/windows/`. Run `spike.py` before `plot.py` to create its
+is under `results/`. Run `spike.py` before `plot.py` to create its
 input CSV. The experiment uses seed 42, but exact results
 may vary across environments. Only Flower is pinned in `requirements.txt`;
-the laptop's recorded versions are in `evidence/windows/software_versions.txt`.
+the laptop's recorded versions are in `results/software_versions.txt`.
 
 ## Files
 
-- `Cohen_Dylan_Spike.pdf` and `Cohen_Dylan_Spike.docx`: updated two-page report
-  reflecting the successful Windows laptop run.
-- `Windows_Run_Evidence.png`: laptop PowerShell screenshot showing all checks
+- `results/Cohen_Dylan_Spike.pdf`: final two-page report.
+- `results/Windows_Run_Evidence.png`: laptop PowerShell screenshot showing all checks
   passed and confirming that `plot.py` generated the results figure.
-- `spike.py`: the experiment (clients, attack, reputation strategy, scenarios).
-- `plot.py`: generates the results figure from `out/reputation_log.csv`.
-- `requirements.txt`: Python dependencies for running the spike and plot.
-- `evidence/windows/`: preserved laptop logs, CSV, figure and version record.
+- `code/spike.py`: the experiment (clients, attack, reputation strategy, scenarios).
+- `code/plot.py`: generates the results figure from `code/out/reputation_log.csv`.
+- `code/requirements.txt`: Python dependencies for running the spike and plot.
+- `results/`: final report, preserved laptop log, CSV, figure, screenshot and version record.
 
 ## Evidence provenance
 
-The final evidence is the uploaded Windows laptop run in `evidence/windows/`.
+The final evidence is the uploaded Windows laptop run in `results/`.
 Earlier sandbox outputs were removed from the current submission tree to
 avoid confusing them with the laptop evidence; they remain in Git history.
 
 - `my_run_log.txt`: original PowerShell log, preserved in UTF-16.
-- `my_run_log_utf8.txt`: the same log converted to UTF-8 for easier reading.
 - `reputation_log.csv`: all 30 scenario-round records from the laptop.
 - `spike_results.png`: the laptop-generated results figure.
 - `software_versions.txt`: versions transcribed from the user's PowerShell output
   after the experiment, using the same virtual environment.
 
-`Windows_Run_Evidence.png` at the repository root is the laptop screenshot.
+`results/Windows_Run_Evidence.png` is the laptop screenshot.
 The uploaded CSV confirms final accuracies of 0.9967, 0.9400, and 0.9700,
 with all checks passing. Both attack scenarios first flag the malicious node
 in round 3; no honest nodes are flagged.
