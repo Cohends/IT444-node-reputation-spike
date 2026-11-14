@@ -1,0 +1,4 @@
+flwr==1.43.0
+numpy
+matplotlib
+ray
