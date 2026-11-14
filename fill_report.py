@@ -87,7 +87,7 @@ fill_single(
 # 3. What you did
 fill_single(
     tables[4],
-    "I used AI assistance to put together the test script, then cloned the repository, installed "
+    "I cloned the repository, installed "
     "the dependencies in a virtual environment, and ran spike.py on my laptop. I compared "
     "three setups: all honest nodes, one attacker with plain FedAvg, and one attacker with "
     "reputation-weighted aggregation. The main test was whether the server could keep and "
