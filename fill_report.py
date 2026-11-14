@@ -78,7 +78,7 @@ fill_single(
     "I recorded these versions after the run using the same virtual environment.\n"
     "The test used four simulated nodes over 10 rounds. Each node had 300 synthetic samples "
     "with 20 features and trained a small logistic-regression model. The data differed slightly "
-    "between nodes. Node 3 was configured to submit a sign-flipped, amplified update with "
+    "between nodes. Node 3 was set up to submit a sign-flipped, amplified update with "
     "added noise. I used simulation instead of our edge devices and synthetic data instead "
     "of real deepfake clips. This let me test the reputation logic without building the full "
     "detector, but it does not test real device speed, networking, or deepfake-detection accuracy.",
@@ -98,8 +98,9 @@ fill_single(
     "min(1, 2*d_ref/(d_ref + d_i)), where d_i is the node's distance and d_ref is the median "
     "distance across nodes. Reputation starts at 1.0 and updates as "
     "0.7*previous reputation + 0.3*current score. Scores below 0.5 are flagged.\n"
-    "The measures above were used for my laptop run. Preliminary sandbox trials were used "
-    "to fix errors and adjust the synthetic data before that run. To repeat it in PowerShell: "
+    "The measures above were used for my laptop run. The script was first tested in a "
+    "sandbox to fix errors and adjust the synthetic data before I ran it on my laptop. "
+    "To repeat it in PowerShell: "
     ".venv\\Scripts\\python.exe spike.py, then .venv\\Scripts\\python.exe plot.py.",
 )
 
@@ -138,9 +139,10 @@ fill_single(
     "node finished near 0.067, while every honest node stayed above 0.80. The laptop CSV "
     "shows the attacker was flagged from round 3 onward, with no honest nodes flagged. "
     "Both main reputation checks passed.\n"
-    "The additional weighting check also passed. Final synthetic-task accuracy was 99.7% "
+    "The additional weighting check also passed. Accuracy on the synthetic data was 99.7% "
     "with no attacker, 94.0% with the attacker and plain FedAvg, and 97.0% with reputation "
-    "weighting. Weighting recovered 3.0 percentage points but did not fully reach the control.\n"
+    "weighting. Using reputation scores improved accuracy by 3 percentage points, but it "
+    "was still below the result with no attacker.\n"
     "One thing I noticed was that an honest node's score could also decrease because its "
     "updates were different from the others. That matters because a different update is not "
     "automatically a malicious one. This test only used one seed and one attack setup, so "
@@ -155,17 +157,17 @@ fill_single(tables[7], "☐  Keep the design as it is      ☒  Change the desig
 
 fill_single(
     tables[8],
-    "This supports the reputation-tracking part of our design and gives us an initial working "
-    "example for FR-16. It does not prove that the system can identify every malicious update. "
-    "The design change I recommend exploring is using reputation when combining updates, "
-    "since that helped in the additional test. I would not lower our security-risk rating yet.\n"
+    "This shows that the reputation tracking in FR-16 worked in this test. It does not prove "
+    "that the system can identify every malicious update. I think we should test using "
+    "reputation scores when combining updates, since that helped in the additional test. "
+    "I would not lower our security-risk rating yet.\n"
     "The first step in IT 445 should be to test the same logic with our real detector and "
     "deepfake data, then try multiple seeds, larger differences between clients, and less "
     "obvious attacks. We also need to check how nodes recover their reputation after a bad "
     "round. D4 also assigns me the separate question of whether to use Krum or Trimmed Mean "
-    "as the final robust aggregation method. This spike tested neither method, so that choice "
-    "remains unresolved and needs its own comparison. Blocking nodes was not tested either. "
-    "I am not proposing a requirements or budget change.",
+    "as the final robust aggregation method. I did not test either method in this spike, so "
+    "I still need to compare them before choosing one. Blocking nodes was not tested either. "
+    "Based on this test, I do not think we need to change our requirements or budget.",
 )
 
 # 6. Evidence
