@@ -72,9 +72,10 @@ for i, (m, p) in enumerate(
 fill_single(
     tables[3],
     "I ran the spike on my Windows laptop in PowerShell using a Python virtual environment "
-    "inside Downloads\\spike-reputation. The script uses Flower with Ray, NumPy, and "
-    "Matplotlib. The exact Windows, Python, and installed package versions were not captured "
-    "in my screenshot, so I have not assumed they match the earlier sandbox setup.\n"
+    "inside Downloads\\spike-reputation. My setup was Windows 11 Pro 64-bit "
+    "(version 10.0.26300, build 26300), PowerShell 5.1.26100.9818, Python 3.14.2, "
+    "Flower 1.43.0, Ray 2.60.0, NumPy 2.5.4, and Matplotlib 3.11.2. "
+    "I recorded these versions after the run using the same virtual environment.\n"
     "The test used four simulated nodes over 10 rounds. Each node had 300 synthetic samples "
     "with 20 features and trained a small logistic-regression model. The data differed slightly "
     "between nodes. Node 3 was configured to submit a sign-flipped, amplified update with "

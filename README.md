@@ -71,6 +71,8 @@ The uploaded Windows laptop evidence is stored separately in `evidence/windows/`
 - `my_run_log_utf8.txt`: the same log converted to UTF-8 for easier reading.
 - `reputation_log.csv`: all 30 scenario-round records from the laptop.
 - `spike_results.png`: the laptop-generated results figure.
+- `software_versions.txt`: versions transcribed from the user's PowerShell output
+  after the experiment, using the same virtual environment.
 
 `Windows_Run_Evidence.png` at the repository root is the laptop screenshot.
 The uploaded CSV confirms final accuracies of 0.9967, 0.9400, and 0.9700,
@@ -83,9 +85,12 @@ scenarios nevertheless report 10 completed rounds and the final verdict is
 printed. These runtime messages are retained, not removed or treated as proof
 of an error-free run; the underlying worker issue has not been diagnosed.
 
-The exact Windows, Python, and installed package versions for the laptop run
-have not yet been recorded here. The experiment used synthetic data and does
-not establish accuracy or security performance on real deepfake media.
+The versions reported after the laptop run were Windows 11 Pro 64-bit
+(10.0.26300, build 26300), PowerShell 5.1.26100.9818, Python 3.14.2,
+Flower 1.43.0, Ray 2.60.0, NumPy 2.5.4, and Matplotlib 3.11.2.
+These were collected afterward, not captured automatically during the run.
+The experiment used synthetic data and does not establish accuracy or
+security performance on real deepfake media.
 
 ## Limits (honest substitution notes)
 

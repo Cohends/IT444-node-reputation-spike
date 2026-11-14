@@ -1,0 +1,17 @@
+Technical Spike - Software Versions
+Provenance: transcribed from the user's PowerShell output shared in this conversation.
+The versions were queried after the experiment using the spike's virtual environment.
+This is a transcription, not a copy of the laptop's original software_versions.txt file.
+
+OS capture time reported: 2026-11-13 21:48:54 -05:00
+Windows: Microsoft Windows 11 Pro
+Windows version: 10.0.26300
+Windows build: 26300
+Architecture: 64-bit
+PowerShell: 5.1.26100.9818
+
+Python: 3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]
+Flower: 1.43.0
+Ray: 2.60.0
+NumPy: 2.5.4
+Matplotlib: 3.11.2
