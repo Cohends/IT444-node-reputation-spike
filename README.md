@@ -52,16 +52,34 @@ Everything is seeded (SEED = 42), so runs are reproducible.
 
 ## Files
 
+- `Cohen_Dylan_Spike.pdf` and `Cohen_Dylan_Spike.docx`: updated two-page report
+  reflecting the successful Windows laptop run.
+- `Windows_Run_Evidence.png`: laptop PowerShell screenshot showing all checks
+  passed and confirming that `plot.py` generated the results figure.
 - `spike.py` — the experiment (clients, attack, reputation strategy, scenarios)
 - `plot.py` — generates the results figure
 - `out/reputation_log.csv` — per-round reputation, distances, flags, accuracy
 - `out/run_log.txt` — full console output of a run
 - `out/spike_results.png` — figure used in the report
 
+## Evidence provenance
+
+The files currently committed under `out/` are the original sandbox outputs,
+not files collected from the Windows laptop. The laptop screenshot confirms
+the same rounded final accuracies (0.997, 0.940, 0.970) and passing checks.
+The actual laptop `my_run_log.txt`, `out/reputation_log.csv`, and
+`out/spike_results.png` have not yet been uploaded to this repository.
+They should be stored separately from the sandbox outputs when available.
+
+The exact Windows, Python, and installed package versions for the laptop run
+have not yet been recorded here. The experiment used synthetic data and does
+not establish accuracy or security performance on real deepfake media.
+
 ## Limits (honest substitution notes)
 
-- Ran on a laptop in Flower's simulator — the Pi 5 / Orin edge devices are not
-  purchased yet, so no real network, no device heterogeneity, no timing data.
+- The initial trials ran in a cloud sandbox; the user then ran the spike
+  successfully on a Windows laptop using Flower's simulator. Neither run
+  measures real edge-device networking, device heterogeneity, or timing.
 - Synthetic Gaussian data and a logistic-regression model, not real
   AV-Deepfake1M frames and not the team's real detector.
 - One attack type (sign-flip amplification). Stealthier attacks (e.g.,
