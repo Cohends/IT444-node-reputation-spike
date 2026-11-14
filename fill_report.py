@@ -157,10 +157,14 @@ fill_single(tables[7], "☐  Keep the design as it is      ☒  Change the desig
 
 fill_single(
     tables[8],
-    "This shows that the reputation tracking in FR-16 worked in this test. It does not prove "
-    "that the system can identify every malicious update. I think we should test using "
-    "reputation scores when combining updates, since that helped in the additional test. "
-    "I would not lower our security-risk rating yet.\n"
+    "We are keeping the same overall design. Reputation tracking was already part of D4, "
+    "and this test gives us a working example for FR-16. The main change I am suggesting "
+    "is that the server use reputation scores when combining model updates, instead of only "
+    "recording or flagging suspicious behavior. This is a focused change to the server's "
+    "aggregation logic, not a redesign of the edge devices or local-training workflow. "
+    "The additional test showed that weighting helped in simulation, but it does not prove "
+    "that the system can identify every malicious update. I would not lower our security-risk "
+    "rating yet.\n"
     "The first step in IT 445 should be to test the same logic with our real detector and "
     "deepfake data, then try multiple seeds, larger differences between clients, and less "
     "obvious attacks. We also need to check how nodes recover their reputation after a bad "
