@@ -64,12 +64,24 @@ Everything is seeded (SEED = 42), so runs are reproducible.
 
 ## Evidence provenance
 
-The files currently committed under `out/` are the original sandbox outputs,
-not files collected from the Windows laptop. The laptop screenshot confirms
-the same rounded final accuracies (0.997, 0.940, 0.970) and passing checks.
-The actual laptop `my_run_log.txt`, `out/reputation_log.csv`, and
-`out/spike_results.png` have not yet been uploaded to this repository.
-They should be stored separately from the sandbox outputs when available.
+The files committed under `out/` are the original sandbox outputs.
+The uploaded Windows laptop evidence is stored separately in `evidence/windows/`:
+
+- `my_run_log.txt`: original PowerShell log, preserved in UTF-16.
+- `my_run_log_utf8.txt`: the same log converted to UTF-8 for easier reading.
+- `reputation_log.csv`: all 30 scenario-round records from the laptop.
+- `spike_results.png`: the laptop-generated results figure.
+
+`Windows_Run_Evidence.png` at the repository root is the laptop screenshot.
+The uploaded CSV confirms final accuracies of 0.9967, 0.9400, and 0.9700,
+with all checks passing. Both attack scenarios first flag the malicious node
+in round 3; no honest nodes are flagged.
+
+The full laptop log includes experimental Windows-support and deprecation
+warnings, plus a Ray worker "Windows fatal exception" message. All three
+scenarios nevertheless report 10 completed rounds and the final verdict is
+printed. These runtime messages are retained, not removed or treated as proof
+of an error-free run; the underlying worker issue has not been diagnosed.
 
 The exact Windows, Python, and installed package versions for the laptop run
 have not yet been recorded here. The experiment used synthetic data and does

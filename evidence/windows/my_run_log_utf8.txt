@@ -1,0 +1,659 @@
+.venv\Scripts\python.exe : [93mWARNING [0m:   DEPRECATED FEATURE: `client_fn` now expects a signature `def 
+client_fn(context: Context)`.The provided `client_fn` has signature: {'cid': <Parameter "cid: str">}. You can import 
+the `Context` like this: `from flwr.app import Context`
+At line:1 char:1
++ .venv\Scripts\python.exe spike.py 2>&1 | Tee-Object my_run_log.txt
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([93mWARNING [...import Context`:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[93mWARNING [0m:   DEPRECATED FEATURE: Passing either `server`, `config`, `strategy` or `client_manager` directly to 
+the ServerApp constructor is deprecated.
+
+            Check the following `FEATURE UPDATE` warning message for the preferred
+            new mechanism to use this feature in Flower.
+        
+[93mWARNING [0m:   FEATURE UPDATE: Pass `ServerApp` arguments wrapped in a `flwr.compat.server.ServerAppComponents` 
+object that gets returned by a function passed as the `server_fn` argument to the `ServerApp` constructor. For 
+example: 
+            ------------------------------------------------------------
+        
+
+        def server_fn(context: Context):
+            server_config = ServerConfig(num_rounds=3)
+            strategy = FedAvg()
+            return ServerAppComponents(
+                strategy=strategy,
+                server_config=server_config,
+        )
+
+        app = ServerApp(server_fn=server_fn)
+
+            ------------------------------------------------------------
+        
+[93mWARNING [0m:   DEPRECATED FEATURE: The `run_simulation` function is deprecated and will be removed in a future 
+version of Flower. Please use `flwr run` in the CLI instead to run your simulation. Refer to the Flower Tutorials for 
+more details: https://flower.ai/docs/framework/tutorial-quickstart-pytorch.html
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[93mWARNING [0m:   Ray support on Windows is experimental and may not work as expected. On Windows, Flower 
+Simulations run best in WSL2: https://learn.microsoft.com/en-us/windows/wsl/about
+[92mINFO [0m:      Starting Flower ServerApp, config: num_rounds=10, no round_timeout
+[92mINFO [0m:      
+[92mINFO [0m:      [INIT]
+[92mINFO [0m:      Using initial global parameters provided by strategy
+[92mINFO [0m:      Starting evaluation of initial global parameters
+[92mINFO [0m:      Evaluation returned no results (`None`)
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 1]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+2026-11-13 21:20:39,252	WARNING authentication_token_setup.py:85 -- Token authentication is enabled for this Ray 
+cluster. Set RAY_AUTH_MODE=disabled to opt out. For more information, see 
+https://docs.ray.io/en/latest/ray-security/token-auth.html
+[33m(raylet)[0m Stack (most recent call first):
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 629 in job_logging_config
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2201 in _should_ignore_worker_log_prefix
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2830 in disconnect
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2132 in shutdown
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 1178 in wrapper
+[33m(raylet)[0m   File 
+"C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\client_mode_hook.py", line 134 in 
+wrapper
+[33m(raylet)[0m 
+[33m(raylet)[0m Current thread's C stack trace (most recent call first):
+[33m(raylet)[0m   <cannot get C stack on this system>
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m   File 
+"C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.pyWindows fatal exception: 
+access violation
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m ", line 1178 in wrapper
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (1, 0.00666666666666671, {'accuracy': 0.9933333333333333}, 28.224703199986834)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 2]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (2, 0.00666666666666671, {'accuracy': 0.9933333333333333}, 28.45798609999474)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 3]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (3, 0.0033333333333332993, {'accuracy': 0.9966666666666667}, 28.68872159998864)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 4]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (4, 0.0033333333333332993, {'accuracy': 0.9966666666666667}, 28.913712900015526)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 5]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (5, 0.0033333333333332993, {'accuracy': 0.9966666666666667}, 29.14367190003395)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 6]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (6, 0.0033333333333332993, {'accuracy': 0.9966666666666667}, 29.372144000022672)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 7]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (7, 0.0033333333333332993, {'accuracy': 0.9966666666666667}, 29.836951899982523)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 8]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (8, 0.0033333333333332993, {'accuracy': 0.9966666666666667}, 30.273017700004857)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 9]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (9, 0.0033333333333332993, {'accuracy': 0.9966666666666667}, 30.71036369999638)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 10]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (10, 0.0033333333333332993, {'accuracy': 0.9966666666666667}, 31.147549399989657)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [SUMMARY]
+[92mINFO [0m:      Run finished 10 round(s) in 31.36s
+[92mINFO [0m:      	History (loss, centralized):
+[92mINFO [0m:      		round 1: 0.00666666666666671
+[92mINFO [0m:      		round 2: 0.00666666666666671
+[92mINFO [0m:      		round 3: 0.0033333333333332993
+[92mINFO [0m:      		round 4: 0.0033333333333332993
+[92mINFO [0m:      		round 5: 0.0033333333333332993
+[92mINFO [0m:      		round 6: 0.0033333333333332993
+[92mINFO [0m:      		round 7: 0.0033333333333332993
+[92mINFO [0m:      		round 8: 0.0033333333333332993
+[92mINFO [0m:      		round 9: 0.0033333333333332993
+[92mINFO [0m:      		round 10: 0.0033333333333332993
+[92mINFO [0m:      	History (metrics, centralized):
+[92mINFO [0m:      	{'accuracy': [(1, 0.9933333333333333),
+[92mINFO [0m:      	              (2, 0.9933333333333333),
+[92mINFO [0m:      	              (3, 0.9966666666666667),
+[92mINFO [0m:      	              (4, 0.9966666666666667),
+[92mINFO [0m:      	              (5, 0.9966666666666667),
+[92mINFO [0m:      	              (6, 0.9966666666666667),
+[92mINFO [0m:      	              (7, 0.9966666666666667),
+[92mINFO [0m:      	              (8, 0.9966666666666667),
+[92mINFO [0m:      	              (9, 0.9966666666666667),
+[92mINFO [0m:      	              (10, 0.9966666666666667)]}
+[92mINFO [0m:      
+[36m(ClientAppActor pid=51004)[0m [93mWARNING [0m:   Manually terminating ClientAppActor
+[33m(raylet)[0m Stack (most recent call first):[32m [repeated 19x across cluster] (Ray deduplicates logs by 
+default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see 
+https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more 
+options.)[0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 629 in job_logging_config[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2201 in _should_ignore_worker_log_prefix[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2830 in disconnect[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2132 in shutdown[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 1178 in wrapper[32m [repeated 18x across cluster][0m
+[33m(raylet)[0m   File 
+"C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\client_mode_hook.py", line 134 in 
+wrapper[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m Current thread's C stack trace (most recent call first):[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   <cannot get C stack on this system>[32m [repeated 19x across cluster][0m
+[36m(ClientAppActor pid=56184)[0m [93mWARNING [0m:   Manually terminating ClientAppActor
+[93mWARNING [0m:   DEPRECATED FEATURE: `client_fn` now expects a signature `def client_fn(context: Context)`.The 
+provided `client_fn` has signature: {'cid': <Parameter "cid: str">}. You can import the `Context` like this: `from 
+flwr.app import Context`
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[93mWARNING [0m:   DEPRECATED FEATURE: Passing either `server`, `config`, `strategy` or `client_manager` directly to 
+the ServerApp constructor is deprecated.
+
+            Check the following `FEATURE UPDATE` warning message for the preferred
+            new mechanism to use this feature in Flower.
+        
+[93mWARNING [0m:   FEATURE UPDATE: Pass `ServerApp` arguments wrapped in a `flwr.compat.server.ServerAppComponents` 
+object that gets returned by a function passed as the `server_fn` argument to the `ServerApp` constructor. For 
+example: 
+            ------------------------------------------------------------
+        
+
+        def server_fn(context: Context):
+            server_config = ServerConfig(num_rounds=3)
+            strategy = FedAvg()
+            return ServerAppComponents(
+                strategy=strategy,
+                server_config=server_config,
+        )
+
+        app = ServerApp(server_fn=server_fn)
+
+            ------------------------------------------------------------
+        
+[93mWARNING [0m:   DEPRECATED FEATURE: The `run_simulation` function is deprecated and will be removed in a future 
+version of Flower. Please use `flwr run` in the CLI instead to run your simulation. Refer to the Flower Tutorials for 
+more details: https://flower.ai/docs/framework/tutorial-quickstart-pytorch.html
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[93mWARNING [0m:   Ray support on Windows is experimental and may not work as expected. On Windows, Flower 
+Simulations run best in WSL2: https://learn.microsoft.com/en-us/windows/wsl/about
+[92mINFO [0m:      Starting Flower ServerApp, config: num_rounds=10, no round_timeout
+[92mINFO [0m:      
+[92mINFO [0m:      [INIT]
+[92mINFO [0m:      Using initial global parameters provided by strategy
+[92mINFO [0m:      Starting evaluation of initial global parameters
+[92mINFO [0m:      Evaluation returned no results (`None`)
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 1]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[33m(raylet)[0m Stack (most recent call first):
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 629 in job_logging_config
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2201 in _should_ignore_worker_log_prefix
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2830 in disconnect
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2132 in shutdown
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 1178 in wrapper
+[33m(raylet)[0m   File 
+"C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\client_mode_hook.py", line 134 in 
+wrapper
+[33m(raylet)[0m 
+[33m(raylet)[0m Current thread's C stack trace (most recent call first):
+[33m(raylet)[0m   <cannot get C stack on this system>
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py  
+File "", line 2201 in _should_ignore_worker_log_prefix
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.pyC:\Us
+ers\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", line 2132 in shutdown
+[33m(raylet)[0m 
+[33m(raylet)[0m ", line 2830 in disconnect
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (1, 0.030000000000000027, {'accuracy': 0.97}, 22.10452200000873)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 2]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (2, 0.036666666666666625, {'accuracy': 0.9633333333333334}, 22.332371499971487)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 3]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (3, 0.036666666666666625, {'accuracy': 0.9633333333333334}, 22.564009099965915)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 4]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (4, 0.050000000000000044, {'accuracy': 0.95}, 22.79215110000223)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 5]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (5, 0.053333333333333344, {'accuracy': 0.9466666666666667}, 23.259943099983502)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 6]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (6, 0.053333333333333344, {'accuracy': 0.9466666666666667}, 23.69437799998559)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 7]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (7, 0.05666666666666664, {'accuracy': 0.9433333333333334}, 24.12731139996322)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 8]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (8, 0.05666666666666664, {'accuracy': 0.9433333333333334}, 24.54917579999892)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 9]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (9, 0.05666666666666664, {'accuracy': 0.9433333333333334}, 24.97271040000487)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 10]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (10, 0.06000000000000005, {'accuracy': 0.94}, 25.410517300013453)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [SUMMARY]
+[92mINFO [0m:      Run finished 10 round(s) in 25.63s
+[92mINFO [0m:      	History (loss, centralized):
+[92mINFO [0m:      		round 1: 0.030000000000000027
+[92mINFO [0m:      		round 2: 0.036666666666666625
+[92mINFO [0m:      		round 3: 0.036666666666666625
+[92mINFO [0m:      		round 4: 0.050000000000000044
+[92mINFO [0m:      		round 5: 0.053333333333333344
+[92mINFO [0m:      		round 6: 0.053333333333333344
+[92mINFO [0m:      		round 7: 0.05666666666666664
+[92mINFO [0m:      		round 8: 0.05666666666666664
+[92mINFO [0m:      		round 9: 0.05666666666666664
+[92mINFO [0m:      		round 10: 0.06000000000000005
+[92mINFO [0m:      	History (metrics, centralized):
+[92mINFO [0m:      	{'accuracy': [(1, 0.97),
+[92mINFO [0m:      	              (2, 0.9633333333333334),
+[92mINFO [0m:      	              (3, 0.9633333333333334),
+[92mINFO [0m:      	              (4, 0.95),
+[92mINFO [0m:      	              (5, 0.9466666666666667),
+[92mINFO [0m:      	              (6, 0.9466666666666667),
+[92mINFO [0m:      	              (7, 0.9433333333333334),
+[92mINFO [0m:      	              (8, 0.9433333333333334),
+[92mINFO [0m:      	              (9, 0.9433333333333334),
+[92mINFO [0m:      	              (10, 0.94)]}
+[92mINFO [0m:      
+[36m(ClientAppActor pid=52272)[0m [93mWARNING [0m:   Manually terminating ClientAppActor
+[33m(raylet)[0m Stack (most recent call first):[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 629 in job_logging_config[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2201 in _should_ignore_worker_log_prefix[32m [repeated 18x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2830 in disconnect[32m [repeated 18x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2132 in shutdown[32m [repeated 18x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 1178 in wrapper[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   File 
+"C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\client_mode_hook.py", line 134 in 
+wrapper[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m Current thread's C stack trace (most recent call first):[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   <cannot get C stack on this system>[32m [repeated 19x across cluster][0m
+[93mWARNING [0m:   DEPRECATED FEATURE: `client_fn` now expects a signature `def client_fn(context: Context)`.The 
+provided `client_fn` has signature: {'cid': <Parameter "cid: str">}. You can import the `Context` like this: `from 
+flwr.app import Context`
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[93mWARNING [0m:   DEPRECATED FEATURE: Passing either `server`, `config`, `strategy` or `client_manager` directly to 
+the ServerApp constructor is deprecated.
+
+            Check the following `FEATURE UPDATE` warning message for the preferred
+            new mechanism to use this feature in Flower.
+        
+[93mWARNING [0m:   FEATURE UPDATE: Pass `ServerApp` arguments wrapped in a `flwr.compat.server.ServerAppComponents` 
+object that gets returned by a function passed as the `server_fn` argument to the `ServerApp` constructor. For 
+example: 
+            ------------------------------------------------------------
+        
+
+        def server_fn(context: Context):
+            server_config = ServerConfig(num_rounds=3)
+            strategy = FedAvg()
+            return ServerAppComponents(
+                strategy=strategy,
+                server_config=server_config,
+        )
+
+        app = ServerApp(server_fn=server_fn)
+
+            ------------------------------------------------------------
+        
+[93mWARNING [0m:   DEPRECATED FEATURE: The `run_simulation` function is deprecated and will be removed in a future 
+version of Flower. Please use `flwr run` in the CLI instead to run your simulation. Refer to the Flower Tutorials for 
+more details: https://flower.ai/docs/framework/tutorial-quickstart-pytorch.html
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[93mWARNING [0m:   Ray support on Windows is experimental and may not work as expected. On Windows, Flower 
+Simulations run best in WSL2: https://learn.microsoft.com/en-us/windows/wsl/about
+[92mINFO [0m:      Starting Flower ServerApp, config: num_rounds=10, no round_timeout
+[92mINFO [0m:      
+[92mINFO [0m:      [INIT]
+[92mINFO [0m:      Using initial global parameters provided by strategy
+[92mINFO [0m:      Starting evaluation of initial global parameters
+[92mINFO [0m:      Evaluation returned no results (`None`)
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 1]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[33m(raylet)[0m Stack (most recent call first):
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 629 in job_logging_config
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2201 in _should_ignore_worker_log_prefix
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2830 in disconnect
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2132 in shutdown
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 1178 in wrapper
+[33m(raylet)[0m   File 
+"C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\client_mode_hook.py", line 134 in 
+wrapper
+[33m(raylet)[0m 
+[33m(raylet)[0m Current thread's C stack trace (most recent call first):
+[33m(raylet)[0m   <cannot get C stack on this system>
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[33m(raylet)[0m 
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (1, 0.01666666666666672, {'accuracy': 0.9833333333333333}, 18.192751199996565)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 2]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (2, 0.030000000000000027, {'accuracy': 0.97}, 18.424737000023015)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 3]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (3, 0.030000000000000027, {'accuracy': 0.97}, 18.65694260003511)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 4]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (4, 0.033333333333333326, {'accuracy': 0.9666666666666667}, 18.886958500021137)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 5]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (5, 0.033333333333333326, {'accuracy': 0.9666666666666667}, 19.233809299999848)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 6]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (6, 0.036666666666666625, {'accuracy': 0.9633333333333334}, 19.68479989998741)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 7]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (7, 0.036666666666666625, {'accuracy': 0.9633333333333334}, 20.126222499995492)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 8]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (8, 0.033333333333333326, {'accuracy': 0.9666666666666667}, 20.56921720004175)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 9]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (9, 0.030000000000000027, {'accuracy': 0.97}, 21.000524200033396)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [ROUND 10]
+[92mINFO [0m:      configure_fit: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_fit: received 4 results and 0 failures
+[92mINFO [0m:      fit progress: (10, 0.030000000000000027, {'accuracy': 0.97}, 21.434052399999928)
+[92mINFO [0m:      configure_evaluate: strategy sampled 4 clients (out of 4)
+[92mINFO [0m:      aggregate_evaluate: received 0 results and 4 failures
+[92mINFO [0m:      
+[92mINFO [0m:      [SUMMARY]
+[92mINFO [0m:      Run finished 10 round(s) in 21.65s
+[92mINFO [0m:      	History (loss, centralized):
+[92mINFO [0m:      		round 1: 0.01666666666666672
+[92mINFO [0m:      		round 2: 0.030000000000000027
+[92mINFO [0m:      		round 3: 0.030000000000000027
+[92mINFO [0m:      		round 4: 0.033333333333333326
+[92mINFO [0m:      		round 5: 0.033333333333333326
+[92mINFO [0m:      		round 6: 0.036666666666666625
+[92mINFO [0m:      		round 7: 0.036666666666666625
+[92mINFO [0m:      		round 8: 0.033333333333333326
+[92mINFO [0m:      		round 9: 0.030000000000000027
+[92mINFO [0m:      		round 10: 0.030000000000000027
+[92mINFO [0m:      	History (metrics, centralized):
+[92mINFO [0m:      	{'accuracy': [(1, 0.9833333333333333),
+[92mINFO [0m:      	              (2, 0.97),
+[92mINFO [0m:      	              (3, 0.97),
+[92mINFO [0m:      	              (4, 0.9666666666666667),
+[92mINFO [0m:      	              (5, 0.9666666666666667),
+[92mINFO [0m:      	              (6, 0.9633333333333334),
+[92mINFO [0m:      	              (7, 0.9633333333333334),
+[92mINFO [0m:      	              (8, 0.9666666666666667),
+[92mINFO [0m:      	              (9, 0.97),
+[92mINFO [0m:      	              (10, 0.97)]}
+[92mINFO [0m:      
+[33m(raylet)[0m Stack (most recent call first):[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 629 in job_logging_config[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2201 in _should_ignore_worker_log_prefix[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2830 in disconnect[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 2132 in shutdown[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   File "C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\worker.py", 
+line 1178 in wrapper[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   File 
+"C:\Users\Dylan\Downloads\spike-reputation\.venv\Lib\site-packages\ray\_private\client_mode_hook.py", line 134 in 
+wrapper[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m Current thread's C stack trace (most recent call first):[32m [repeated 19x across cluster][0m
+[33m(raylet)[0m   <cannot get C stack on this system>[32m [repeated 19x across cluster][0m
+
+--- scenario control (no attacker) ---
+final reputation: n0=0.867 n1=1.000 n2=1.000 n3=0.854
+final accuracy on held-out data: 0.997
+  round  1: acc=0.993 rep0=0.99 rep1=1.00 rep2=1.00 rep3=0.99
+  round  2: acc=0.993 rep0=0.97 rep1=1.00 rep2=1.00 rep3=0.96
+  round  3: acc=0.997 rep0=0.94 rep1=1.00 rep2=1.00 rep3=0.93
+  round  4: acc=0.997 rep0=0.92 rep1=1.00 rep2=1.00 rep3=0.91
+  round  5: acc=0.997 rep0=0.91 rep1=1.00 rep2=1.00 rep3=0.90
+  round  6: acc=0.997 rep0=0.90 rep1=1.00 rep2=1.00 rep3=0.88
+  round  7: acc=0.997 rep0=0.89 rep1=1.00 rep2=1.00 rep3=0.87
+  round  8: acc=0.997 rep0=0.88 rep1=1.00 rep2=1.00 rep3=0.87
+  round  9: acc=0.997 rep0=0.87 rep1=1.00 rep2=1.00 rep3=0.86
+  round 10: acc=0.997 rep0=0.87 rep1=1.00 rep2=1.00 rep3=0.85
+
+--- scenario attack + plain FedAvg ---
+final reputation: n0=0.804 n1=1.000 n2=1.000 n3=0.067
+final accuracy on held-out data: 0.940
+  round  1: acc=0.970 rep0=0.97 rep1=1.00 rep2=1.00 rep3=0.71
+  round  2: acc=0.963 rep0=0.93 rep1=1.00 rep2=1.00 rep3=0.51
+  round  3: acc=0.963 rep0=0.89 rep1=1.00 rep2=1.00 rep3=0.37
+  round  4: acc=0.950 rep0=0.86 rep1=1.00 rep2=1.00 rep3=0.27
+  round  5: acc=0.947 rep0=0.84 rep1=1.00 rep2=1.00 rep3=0.20
+  round  6: acc=0.947 rep0=0.83 rep1=1.00 rep2=1.00 rep3=0.15
+  round  7: acc=0.943 rep0=0.82 rep1=1.00 rep2=1.00 rep3=0.12
+  round  8: acc=0.943 rep0=0.81 rep1=1.00 rep2=1.00 rep3=0.10
+  round  9: acc=0.943 rep0=0.81 rep1=1.00 rep2=1.00 rep3=0.08
+  round 10: acc=0.940 rep0=0.80 rep1=1.00 rep2=1.00 rep3=0.07
+
+--- scenario attack + reputation-weighted ---
+final reputation: n0=0.802 n1=1.000 n2=1.000 n3=0.067
+final accuracy on held-out data: 0.970
+  round  1: acc=0.983 rep0=0.97 rep1=1.00 rep2=1.00 rep3=0.71
+  round  2: acc=0.970 rep0=0.93 rep1=1.00 rep2=1.00 rep3=0.51
+  round  3: acc=0.970 rep0=0.89 rep1=1.00 rep2=1.00 rep3=0.37
+  round  4: acc=0.967 rep0=0.87 rep1=1.00 rep2=1.00 rep3=0.27
+  round  5: acc=0.967 rep0=0.85 rep1=1.00 rep2=1.00 rep3=0.20
+  round  6: acc=0.963 rep0=0.83 rep1=1.00 rep2=1.00 rep3=0.15
+  round  7: acc=0.963 rep0=0.82 rep1=1.00 rep2=1.00 rep3=0.12
+  round  8: acc=0.967 rep0=0.81 rep1=1.00 rep2=1.00 rep3=0.10
+  round  9: acc=0.970 rep0=0.81 rep1=1.00 rep2=1.00 rep3=0.08
+  round 10: acc=0.970 rep0=0.80 rep1=1.00 rep2=1.00 rep3=0.07
+
+=== SPIKE VERDICT ===
+control (no attacker)          final acc=0.997 malicious rep=None min honest rep=0.8535306261389057
+attack + plain FedAvg          final acc=0.940 malicious rep=0.0671317625343355 min honest rep=0.8044799213822995
+attack + reputation-weighted   final acc=0.970 malicious rep=0.06682329764594819 min honest rep=0.8024319333784655
+P1 (attack + plain FedAvg): malicious >= 0.2 below every honest node: PASS
+P1 (attack + reputation-weighted): malicious >= 0.2 below every honest node: PASS
+P2: no honest node flagged more than 2/10 rounds (attack scenarios): PASS
+P3: defended final accuracy within 0.05 of control: PASS
+log saved to out/reputation_log.csv

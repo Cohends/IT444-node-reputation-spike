@@ -134,12 +134,15 @@ fill_single(
     "94.0% with the attacker and plain FedAvg, and 97.0% with reputation weighting. "
     "Weighting recovered 3.0 percentage points, but it did not fully reach the control result. "
     "The malicious node finished near 0.067, while every honest node stayed above 0.80. "
-    "The logs from the matching sandbox run show the attacker was flagged from round 3 "
+    "The uploaded laptop CSV shows the attacker was flagged from round 3 "
     "onward, with no honest nodes flagged.\n"
     "One thing I noticed was that an honest node's score could also decrease because its "
     "updates were different from the others. That matters because a different update is not "
     "automatically a malicious one. This test only used one seed and one attack setup, so "
-    "it does not show how the rule handles stronger data differences or less obvious attacks.",
+    "it does not show how the rule handles stronger data differences or less obvious attacks. "
+    "The laptop log also contains Windows-support warnings and a Ray worker fatal-exception "
+    "message. All three scenarios still completed 10 rounds and printed the final verdict, "
+    "but I would not describe the run as error-free.",
 )
 
 # 5. Decision
@@ -162,10 +165,10 @@ fill_single(
 t = tables[9]
 for i, r in enumerate(
     [
-        ("Repository", "https://github.com/Cohends/spike-reputation", "Code and initial sandbox outputs. Private; reviewer needs access."),
+        ("Repository", "https://github.com/Cohends/spike-reputation", "Code, report, and evidence. Private; reviewer needs access."),
         ("Laptop screenshot", "Windows_Run_Evidence.png", "PowerShell verdict: all checks passed; plot.py saved the figure."),
-        ("Laptop output", "my_run_log.txt (if saved); out/reputation_log.csv", "Console output and per-round data. Use the copies from the Windows run."),
-        ("Figure", "out/spike_results.png", "Reputation and accuracy plots generated on my laptop."),
+        ("Laptop output", "evidence/windows/my_run_log.txt; evidence/windows/reputation_log.csv", "Original laptop log and all 30 round records. UTF-8 log copy also included."),
+        ("Figure", "evidence/windows/spike_results.png", "Reputation and accuracy plots generated on my laptop."),
     ],
     start=1,
 ):
