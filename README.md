@@ -127,8 +127,8 @@ These were collected afterward, not captured automatically during the run.
 The experiment used synthetic data and does not establish accuracy or
 security performance on real deepfake media.
 
-The repository is private. The reviewer needs repository access to open
-the evidence links in the PDF.
+The repository is public. The reviewer can open the report and evidence
+links without signing in.
 
 ## Limits (honest substitution notes)
 
