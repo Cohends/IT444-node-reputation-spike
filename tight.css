@@ -1,6 +1,0 @@
-@page { size: Letter; margin: 0.6in; }
-body { font-size: 9pt; line-height: 1.15; font-family: "FreeSerif", serif; }
-p { margin: 2pt 0; }
-table { width: 100%; border-collapse: collapse; margin: 3pt 0; }
-td, th { padding: 1.5pt 4pt; font-size: 8.5pt; vertical-align: top; border: 0.5pt solid #999; }
-h1, h2, h3 { margin: 4pt 0 2pt; font-size: 11pt; }

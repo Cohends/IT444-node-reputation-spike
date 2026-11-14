@@ -80,8 +80,9 @@ python -m venv .venv
 
 On Linux or macOS, use a virtual environment, install `requirements.txt`,
 then run `python spike.py` and `python plot.py`. New runs write to `out/`
-and can replace the sandbox outputs there; the preserved laptop evidence
-is under `evidence/windows/`. The experiment uses seed 42, but exact results
+which is generated locally and ignored by Git; the preserved laptop evidence
+is under `evidence/windows/`. Run `spike.py` before `plot.py` to create its
+input CSV. The experiment uses seed 42, but exact results
 may vary across environments. Only Flower is pinned in `requirements.txt`;
 the laptop's recorded versions are in `evidence/windows/software_versions.txt`.
 
@@ -93,15 +94,14 @@ the laptop's recorded versions are in `evidence/windows/software_versions.txt`.
   passed and confirming that `plot.py` generated the results figure.
 - `spike.py`: the experiment (clients, attack, reputation strategy, scenarios).
 - `plot.py`: generates the results figure from `out/reputation_log.csv`.
-- `out/reputation_log.csv`: original sandbox round records.
-- `out/run_log.txt`: original sandbox console output.
-- `out/spike_results.png`: original sandbox figure, not the laptop figure
-  linked in the final report.
+- `requirements.txt`: Python dependencies for running the spike and plot.
+- `evidence/windows/`: preserved laptop logs, CSV, figure and version record.
 
 ## Evidence provenance
 
-The files committed under `out/` are the original sandbox outputs.
-The uploaded Windows laptop evidence is stored separately in `evidence/windows/`:
+The final evidence is the uploaded Windows laptop run in `evidence/windows/`.
+Earlier sandbox outputs were removed from the current submission tree to
+avoid confusing them with the laptop evidence; they remain in Git history.
 
 - `my_run_log.txt`: original PowerShell log, preserved in UTF-16.
 - `my_run_log_utf8.txt`: the same log converted to UTF-8 for easier reading.
