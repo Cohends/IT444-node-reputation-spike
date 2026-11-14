@@ -36,7 +36,7 @@ def fill_single(t, text, size=9):
 t = tables[0]
 set_cell(t, 0, 1, "Dylan Cohen", bold=True)
 set_cell(t, 0, 3, "2 (Lee-2)")
-set_cell(t, 1, 1, "Federated deepfake detection")
+set_cell(t, 1, 1, "LEE2-B")
 set_cell(t, 1, 3, "FR-16 (per-node reputation), FR-12/FR-13 (update anomaly checks)")
 
 # 1. The question
