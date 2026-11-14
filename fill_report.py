@@ -42,8 +42,8 @@ set_cell(t, 1, 3, "FR-16 (per-node reputation), FR-12/FR-13 (update anomaly chec
 # 1. The question
 fill_single(
     tables[1],
-    "Can our Flower server track each node's reputation over 10 training rounds, give the "
-    "malicious node a lower score than the honest nodes, and reduce its effect on the shared model?",
+    "Can the federated learning server accurately track and update the reputation of individual "
+    "edge nodes across multiple training rounds to identify potentially malicious model updates?",
 )
 
 # Measures / pass marks
@@ -59,7 +59,7 @@ for i, (m, p) in enumerate(
             "at most 2 of 10 rounds, per node",
         ),
         (
-            "Final global accuracy with reputation-weighted aggregation vs. honest-only control",
+            "Additional test: final accuracy with reputation weighting vs. honest-only control",
             "within 0.05 of control",
         ),
     ],
@@ -89,7 +89,9 @@ fill_single(
     "I used AI assistance to put together the test script, then cloned the repository, installed "
     "the dependencies in a virtual environment, and ran spike.py on my laptop. I compared "
     "three setups: all honest nodes, one attacker with plain FedAvg, and one attacker with "
-    "reputation-weighted aggregation. I then ran plot.py to create the results figure.\n"
+    "reputation-weighted aggregation. The main test was whether the server could keep and "
+    "update a separate score for each node across rounds. Reputation weighting was an "
+    "additional test, not a comparison of Krum and Trimmed Mean. I then ran plot.py.\n"
     "The server compares each update with the coordinate-wise median of all updates. "
     "A node farther from that reference gets a lower score. The score is "
     "min(1, 2*d_ref/(d_ref + d_i)), where d_i is the node's distance and d_ref is the median "
@@ -117,7 +119,7 @@ for i, r in enumerate(
             "Yes",
         ),
         (
-            "P3: defended final accuracy vs. control",
+            "P3 (additional): weighted accuracy vs. control",
             "within 0.05 of control (0.997)",
             "0.970 weighted vs. 0.997 control; difference 0.027",
             "Yes",
@@ -130,12 +132,14 @@ for i, r in enumerate(
 
 fill_single(
     tables[6],
-    "All three checks passed on my laptop. Final accuracy was 99.7% with no attacker, "
-    "94.0% with the attacker and plain FedAvg, and 97.0% with reputation weighting. "
-    "Weighting recovered 3.0 percentage points, but it did not fully reach the control result. "
-    "The malicious node finished near 0.067, while every honest node stayed above 0.80. "
-    "The uploaded laptop CSV shows the attacker was flagged from round 3 "
-    "onward, with no honest nodes flagged.\n"
+    "The answer to my D4 question is yes in this simulated test. The server recorded and "
+    "updated separate reputation scores for all four nodes in every round. The malicious "
+    "node finished near 0.067, while every honest node stayed above 0.80. The laptop CSV "
+    "shows the attacker was flagged from round 3 onward, with no honest nodes flagged. "
+    "Both main reputation checks passed.\n"
+    "The additional weighting check also passed. Final synthetic-task accuracy was 99.7% "
+    "with no attacker, 94.0% with the attacker and plain FedAvg, and 97.0% with reputation "
+    "weighting. Weighting recovered 3.0 percentage points but did not fully reach the control.\n"
     "One thing I noticed was that an honest node's score could also decrease because its "
     "updates were different from the others. That matters because a different update is not "
     "automatically a malicious one. This test only used one seed and one attack setup, so "
@@ -150,15 +154,17 @@ fill_single(tables[7], "☐  Keep the design as it is      ☒  Change the desig
 
 fill_single(
     tables[8],
-    "This gives us an initial working example for FR-16. My recommendation is to keep "
-    "reputation tracking and use the scores when combining updates, rather than only "
-    "recording them. That reduced the attack's effect in this test. I would not call it a "
-    "finished security solution or lower our risk rating based on this result alone.\n"
+    "This supports the reputation-tracking part of our design and gives us an initial working "
+    "example for FR-16. It does not prove that the system can identify every malicious update. "
+    "The design change I recommend exploring is using reputation when combining updates, "
+    "since that helped in the additional test. I would not lower our security-risk rating yet.\n"
     "The first step in IT 445 should be to test the same logic with our real detector and "
     "deepfake data, then try multiple seeds, larger differences between clients, and less "
     "obvious attacks. We also need to check how nodes recover their reputation after a bad "
-    "round. This spike did not compare Krum with trimmed mean or test blocking nodes, so "
-    "those decisions are still open. I am not proposing a requirements or budget change.",
+    "round. D4 also assigns me the separate question of whether to use Krum or Trimmed Mean "
+    "as the final robust aggregation method. This spike tested neither method, so that choice "
+    "remains unresolved and needs its own comparison. Blocking nodes was not tested either. "
+    "I am not proposing a requirements or budget change.",
 )
 
 # 6. Evidence
