@@ -1,32 +1,35 @@
 """
 Technical Spike: Can the FL server track per-node reputation across rounds?
 
-Question: Can the Flower server maintain a rolling reputation score for each
-edge node, keep a malicious node's score clearly below every honest node's
-over 10 federated rounds, and use those scores to protect the global model?
+Question: Can the federated learning server accurately track and update the
+reputation of individual edge nodes across multiple training rounds to
+identify potentially malicious model updates?
 
-Setup: 4 simulated clients (3 honest, 1 malicious) training a small NumPy
-logistic-regression "detector" on synthetic data. Real edge hardware is not
-available yet, so this runs in Flower's simulator on a laptop.
+Setup: 4 simulated clients training small NumPy logistic-regression models
+on synthetic binary-classification data in Flower's simulator. The control
+has 4 honest nodes; each attack scenario has 3 honest and 1 malicious node.
 
-Attack simulated: classic model poisoning — the malicious node submits an
-honest-looking update that is sign-flipped and amplified 5x.
+Attack simulated: model poisoning. The malicious node sign-flips and
+amplifies its weight update 5x, with added noise.
 
-Reputation rule (defined BEFORE running, per spike rules):
+Reputation rule used for the laptop evaluation:
   Each round, the server computes each client's update distance from the
-  coordinate-wise MEDIAN of all client updates (a robust consensus reference,
-  the same idea behind Krum / trimmed-mean). Round score
+  coordinate-wise MEDIAN of all client updates as an anomaly-scoring reference.
+  Krum and Trimmed Mean are not implemented or compared here. Round score
   s_i = 2*d_ref / (d_ref + d_i), capped at 1.0, so a node near the consensus
   scores ~1 and a node far from it scores near 0. Reputation is an EMA
   (alpha=0.3) of round scores, starting at 1.0. A node is flagged when its
   reputation falls below 0.5.
 
-Pass marks (set before testing):
+Exploratory sandbox runs fixed errors and adjusted synthetic data before the
+laptop run. The criteria below were used for that laptop evaluation.
+
+Pass marks:
   P1: After 10 rounds, the malicious node's reputation is >= 0.2 lower than
       every honest node's (in both attack scenarios).
   P2: No honest node is flagged (rep < 0.5) in more than 2 of 10 rounds.
-  P3: With reputation-weighted aggregation, final global accuracy is within
-      0.05 of the honest-only control.
+  P3 (additional): With reputation-weighted aggregation, final global accuracy
+      is within 0.05 of the honest-only control.
 
 Scenarios:
   control  : 4 honest nodes, plain FedAvg (baseline accuracy)

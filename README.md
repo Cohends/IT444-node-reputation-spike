@@ -1,54 +1,89 @@
 # Technical Spike: Server-side node-reputation tracking in federated learning
 
-IT 444 Capstone (Team 2, Lee-2) — Dylan Cohen's individual technical spike.
+IT 444 Capstone (Team 2, LEE2-B): Dylan Cohen's individual technical spike.
 
-**Question:** Can the Flower server maintain a rolling reputation score for each edge node, keep a malicious node's score clearly below every honest node's over 10 federated rounds, and use those scores to protect the global model?
+**D4 question:** Can the federated learning server accurately track and update the reputation of individual edge nodes across multiple training rounds to identify potentially malicious model updates?
+
+Repository: [IT444-spike](https://github.com/Cohends/IT444-spike).
+The final submission is [Cohen_Dylan_Spike.pdf](Cohen_Dylan_Spike.pdf);
+[Cohen_Dylan_Spike.docx](Cohen_Dylan_Spike.docx) is the editable copy.
 
 ## What this is
 
-Four simulated edge nodes (three honest, one malicious) train a small NumPy
-logistic-regression "detector" on synthetic real-vs-fake data using Flower's
-simulator. The malicious node runs a classic model-poisoning attack: it
-submits an honest-looking update that is sign-flipped and amplified 5x.
+Four simulated edge nodes train small NumPy logistic-regression models on
+synthetic binary-classification data using Flower's simulator. The control
+has four honest nodes; each attack scenario has three honest nodes and one
+malicious node. The attacker sign-flips and amplifies its weight update 5x
+and adds noise. Each scenario runs for 10 rounds.
 
 A custom `ReputationFedAvg` strategy extends FedAvg:
 
 - Each round, the server computes every client's update distance from the
-  coordinate-wise **median** of all updates (the robust-consensus idea behind
-  Krum / trimmed-mean).
+  coordinate-wise median of all updates as a reference for anomaly scoring.
 - Round score `s = 2*d_ref/(d_ref + d_i)` capped at 1.0; reputation is an EMA
   (alpha = 0.3); a node is flagged when reputation < 0.5.
 - Optionally, updates are aggregated **weighted by reputation** instead of
   plain averaging.
 
-## Pass marks (set before running)
+Reputation tracking across rounds is the main test. Weighting updates by
+reputation is an additional experiment. Neither Krum nor Trimmed Mean was
+implemented or compared; choosing between them remains a separate D4 task.
 
-- P1: malicious node's final reputation >= 0.2 below every honest node's
-- P2: no honest node flagged in more than 2 of 10 rounds
-- P3: with reputation-weighted aggregation, final accuracy within 0.05 of the
+## Pass marks used for the laptop run
+
+Exploratory sandbox runs were used to fix errors and adjust the synthetic
+data before the laptop run. These criteria were used for the laptop
+evaluation; the experiment was not free of preliminary testing.
+
+- P1: malicious node's final reputation at least 0.2 below every honest
+  node's, in both attack scenarios.
+- P2: no honest node flagged in more than 2 of 10 rounds, in either attack
+  scenario.
+- P3 (additional): with reputation-weighted aggregation, final accuracy within 0.05 of the
   honest-only control
 
 ## Results (all passed)
 
 | Scenario | Final accuracy | Malicious rep | Min honest rep |
 |---|---|---|---|
-| Control (no attacker) | 0.997 | — | 0.854 |
-| Attack + plain FedAvg | 0.940 | 0.067 | 0.804 |
-| Attack + reputation-weighted | 0.970 | 0.067 | 0.802 |
+| Control (no attacker) | 0.9967 | Not applicable | 0.8535 |
+| Attack + plain FedAvg | 0.9400 | 0.0671 | 0.8045 |
+| Attack + reputation-weighted | 0.9700 | 0.0668 | 0.8024 |
 
-The malicious node was flagged from round 3 onward; honest nodes were never
-flagged. Poisoning cost plain FedAvg 5.7 accuracy points; reputation
-weighting recovered 3 of them.
+These are the recorded Windows laptop results. In both attack scenarios,
+the malicious node was flagged from round 3 onward; no honest nodes were
+flagged. Weighting improved synthetic-task accuracy by 3 percentage points
+over plain FedAvg under attack, but stayed below the honest-only control.
+These numbers are not real deepfake-detection accuracy.
+
+## Design choice
+
+Keep the planned reputation-tracking design and the overall architecture.
+Reputation weighting is an implementation recommendation to validate with
+the real detector and deepfake data, not an architecture change. This test
+does not justify changing the requirements or budget, lowering the
+security-risk rating, selecting Krum or Trimmed Mean, or claiming that node
+blocking was tested.
 
 ## Run it
 
-```bash
-pip install -r requirements.txt
-python3 spike.py      # runs all three scenarios, ~30 s, writes out/reputation_log.csv
-python3 plot.py       # writes out/spike_results.png
+PowerShell, from a new clone:
+
+```powershell
+git clone https://github.com/Cohends/IT444-spike.git
+Set-Location IT444-spike
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe spike.py
+.\.venv\Scripts\python.exe plot.py
 ```
 
-Everything is seeded (SEED = 42), so runs are reproducible.
+On Linux or macOS, use a virtual environment, install `requirements.txt`,
+then run `python spike.py` and `python plot.py`. New runs write to `out/`
+and can replace the sandbox outputs there; the preserved laptop evidence
+is under `evidence/windows/`. The experiment uses seed 42, but exact results
+may vary across environments. Only Flower is pinned in `requirements.txt`;
+the laptop's recorded versions are in `evidence/windows/software_versions.txt`.
 
 ## Files
 
@@ -56,11 +91,12 @@ Everything is seeded (SEED = 42), so runs are reproducible.
   reflecting the successful Windows laptop run.
 - `Windows_Run_Evidence.png`: laptop PowerShell screenshot showing all checks
   passed and confirming that `plot.py` generated the results figure.
-- `spike.py` — the experiment (clients, attack, reputation strategy, scenarios)
-- `plot.py` — generates the results figure
-- `out/reputation_log.csv` — per-round reputation, distances, flags, accuracy
-- `out/run_log.txt` — full console output of a run
-- `out/spike_results.png` — figure used in the report
+- `spike.py`: the experiment (clients, attack, reputation strategy, scenarios).
+- `plot.py`: generates the results figure from `out/reputation_log.csv`.
+- `out/reputation_log.csv`: original sandbox round records.
+- `out/run_log.txt`: original sandbox console output.
+- `out/spike_results.png`: original sandbox figure, not the laptop figure
+  linked in the final report.
 
 ## Evidence provenance
 
@@ -91,6 +127,9 @@ Flower 1.43.0, Ray 2.60.0, NumPy 2.5.4, and Matplotlib 3.11.2.
 These were collected afterward, not captured automatically during the run.
 The experiment used synthetic data and does not establish accuracy or
 security performance on real deepfake media.
+
+The repository is private. The reviewer needs repository access to open
+the evidence links in the PDF.
 
 ## Limits (honest substitution notes)
 
