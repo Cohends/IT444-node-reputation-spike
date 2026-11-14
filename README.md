@@ -4,7 +4,7 @@ IT 444 Capstone (Team 2, LEE2-B): Dylan Cohen's individual technical spike.
 
 **D4 question:** Can the federated learning server accurately track and update the reputation of individual edge nodes across multiple training rounds to identify potentially malicious model updates?
 
-Repository: [IT444-spike](https://github.com/Cohends/IT444-spike).
+Repository: [IT444-node-reputation-spike](https://github.com/Cohends/IT444-node-reputation-spike).
 The final submission is [Cohen_Dylan_Spike.pdf](Cohen_Dylan_Spike.pdf);
 [Cohen_Dylan_Spike.docx](Cohen_Dylan_Spike.docx) is the editable copy.
 
@@ -70,8 +70,8 @@ blocking was tested.
 PowerShell, from a new clone:
 
 ```powershell
-git clone https://github.com/Cohends/IT444-spike.git
-Set-Location IT444-spike
+git clone https://github.com/Cohends/IT444-node-reputation-spike.git
+Set-Location IT444-node-reputation-spike
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe spike.py

@@ -161,7 +161,7 @@ fill_single(
 t = tables[9]
 for i, r in enumerate(
     [
-        ("Repository", "IT444-spike", "Code, report and evidence; private."),
+        ("Repository", "IT444-node-reputation-spike", "Code, report and evidence; private."),
         ("Laptop screenshot", "Windows_Run_Evidence.png", "PowerShell verdict and plot output."),
         ("Laptop output", "my_run_log.txt / reputation_log.csv", "Original log and 30 round records."),
         ("Figure", "spike_results.png", "Laptop reputation and accuracy plots."),
@@ -314,7 +314,7 @@ d.core_properties.author = "Dylan Cohen"
 d.core_properties.title = "IT 444 Technical Spike Report"
 # Native evidence hyperlinks, with filenames rather than long URLs in the table.
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
-repo = "https://github.com/Cohends/IT444-spike"
+repo = "https://github.com/Cohends/IT444-node-reputation-spike"
 def add_link(paragraph, label, url):
     hyperlink = OxmlElement("w:hyperlink")
     rid = d.part.relate_to(url, RT.HYPERLINK, is_external=True)
@@ -332,7 +332,7 @@ def add_link(paragraph, label, url):
     hyperlink.append(run)
     paragraph._p.append(hyperlink)
 for row, links in (
-    (1, [("IT444-spike", repo)]),
+    (1, [("IT444-node-reputation-spike", repo)]),
     (2, [("Windows_Run_Evidence.png", repo + "/blob/main/Windows_Run_Evidence.png")]),
     (3, [("my_run_log.txt", repo + "/blob/main/evidence/windows/my_run_log.txt"),
          ("reputation_log.csv", repo + "/blob/main/evidence/windows/reputation_log.csv")]),
@@ -345,8 +345,9 @@ for row, links in (
             p.add_run(" / ").font.size = Pt(10)
         add_link(p, label, url)
 # Drop unused pre-rename hyperlinks after replacing the evidence cells.
+used_hyperlinks = set(d.element.xpath(".//w:hyperlink/@r:id"))
 for rid, rel in list(d.part.rels.items()):
-    if rel.reltype == RT.HYPERLINK and rel.is_external and "github.com/Cohends/spike-reputation" in rel.target_ref:
+    if rel.reltype == RT.HYPERLINK and rid not in used_hyperlinks:
         d.part.drop_rel(rid)
 d.save(DST)
 print("saved", DST)
