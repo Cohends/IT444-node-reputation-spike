@@ -162,7 +162,7 @@ fill_single(
 t = tables[9]
 for i, r in enumerate(
     [
-        ("Repository", "github.com/dylanscohen/spike-reputation (to be pushed)", "spike.py, plot.py, README, commits"),
+        ("Repository", "github.com/Cohends/spike-reputation", "spike.py, plot.py, README, commits"),
         ("Run log", "out/run_log.txt", "Console output of all three scenarios and the pass/fail verdict"),
         ("Data log", "out/reputation_log.csv", "Per-round reputation, distances, flags, accuracy (30 rounds)"),
         ("Figure", "out/spike_results.png", "Reputation and accuracy plots"),
